@@ -3,144 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Futuristic ID Card 2026 + Audio</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", sans-serif;
-      }
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background: radial-gradient(circle at center, #1e1e2f, #0f0c29);
-        overflow: hidden;
-        color: white;
-      }
-
-      /* --- FORM STYLING --- */
-      #input-section {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 30px;
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        width: 350px;
-        text-align: center;
-        transition: 0.5s;
-        z-index: 10;
-      }
-      input {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border-radius: 10px;
-        border: none;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        outline: none;
-      }
-      .btn {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-        color: white;
-        font-weight: bold;
-        margin-top: 10px;
-      }
-
-      /* --- CARD STYLING --- */
-      #card-section {
-        display: none;
-        perspective: 1000px;
-      }
-      .card {
-        width: 320px;
-        height: 480px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(20px);
-        text-align: center;
-        position: relative;
-        transform-style: preserve-3d;
-        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
-      }
-      .profile-img {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(45deg, #ff0057, #01b4ff);
-        border-radius: 50%;
-        margin: 0 auto 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 40px;
-      }
-      .quote-box {
-        margin-top: 20px;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-        font-style: italic;
-        font-size: 13px;
-        min-height: 80px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      /* Music Equalizer Animation */
-      .eq-container {
-        display: flex;
-        justify-content: center;
-        gap: 3px;
-        margin-top: 15px;
-        height: 20px;
-      }
-      .bar {
-        width: 4px;
-        height: 100%;
-        background: #00d2ff;
-        animation: bounce 1s ease-in-out infinite;
-      }
-      @keyframes bounce {
-        0%,
-        100% {
-          height: 5px;
-        }
-        50% {
-          height: 20px;
-        }
-      }
-
-      /* Dekorasi Latar */
-      .blob {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        background: #3a7bd5;
-        filter: blur(80px);
-        border-radius: 50%;
-        z-index: -1;
-        top: 10%;
-        left: 10%;
-        animation: move 10s infinite alternate;
-      }
-      @keyframes move {
-        from {
-          transform: translate(0, 0);
-        }
-        to {
-          transform: translate(100px, 50px);
-        }
-      }
-    </style>
+    <title>Futuristic ID Card 2026</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="blob"></div>
@@ -168,7 +32,6 @@
           "Memuat pesan masa depan..."
         </div>
 
-        <!-- Visualizer Sederhana -->
         <div class="eq-container">
           <div class="bar" style="animation-delay: 0.1s"></div>
           <div class="bar" style="animation-delay: 0.3s"></div>
@@ -187,58 +50,10 @@
       </div>
     </div>
 
-    <!-- Audio Element (Musik Instrumen Futuristik) -->
     <audio id="bgMusic" loop>
       <source src="www.soundhelix.com" type="audio/mpeg" />
     </audio>
 
-    <script>
-      const quotes = [
-        "Kode adalah puisi di tahun 2026.",
-        "Masa depanmu ditentukan oleh apa yang kamu buat hari ini.",
-        "Jangan berhenti saat lelah, berhentilah saat selesai.",
-        "Teknologi berkembang, pastikan skill-mu juga!",
-        "Halo dari dimensi digital 2026!",
-      ];
-
-      function generateCard() {
-        const name = document.getElementById("nameInput").value;
-        const age = document.getElementById("ageInput").value;
-        const hobby = document.getElementById("hobbyInput").value;
-
-        if (!name || !age) {
-          alert("Isi dulu bro biar asik!");
-          return;
-        }
-
-        // Putar Musik
-        const music = document.getElementById("bgMusic");
-        music.volume = 0.5; // Set volume 50%
-        music.play();
-
-        // Set Data ke Kartu
-        document.getElementById("display-name").innerText = name;
-        document.getElementById("display-info").innerText = `${age} Tahun | ${
-          hobby || "Digital Nomad"
-        }`;
-        document.getElementById("display-quote").innerText = `"${
-          quotes[Math.floor(Math.random() * quotes.length)]
-        }"`;
-
-        // Transisi Tampilan
-        document.getElementById("input-section").style.display = "none";
-        document.getElementById("card-section").style.display = "block";
-      }
-
-      // Efek Tilt 3D
-      const card = document.getElementById("card");
-      document.addEventListener("mousemove", (e) => {
-        if (document.getElementById("card-section").style.display === "block") {
-          let xAxis = (window.innerWidth / 2 - e.pageX) / 20;
-          let yAxis = (window.innerHeight / 2 - e.pageY) / 20;
-          card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        }
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
